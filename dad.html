@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Dad</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="dad.css">
+</head>
+<body>
+    <header>
+        <h1>About My Dad</h1>
+    </header>
+
+    <main>
+        <div class="container">
+            <section class="profile-section">
+                <div class="profile-card">
+                    <img src="father copy.jpg" alt="My Dad" class="profile-img animated-img">
+                    <h2>Creative Artist</h2>
+                    <div class="details">
+                        <div class="info-block">
+                            <h3>About</h3>
+                            <ul>
+                                <li>Passionate and imaginative artist</li>
+                                <li>Visual storyteller with unique perspective</li>
+                            </ul>
+                        </div>
+
+                        <div class="info-block">
+                            <h3>Skills</h3>
+                            <ul>
+                                <li>Mixed media and painting</li>
+                                <li>Conceptual art design</li>
+                                <li>Creative direction</li>
+                            </ul>
+                        </div>
+
+                        <div class="info-block">
+                            <h3>Interests</h3>
+                            <ul>
+                                <li>Abstract art</li>
+                                <li>creative towrads to make a good art</li>
+                                <li>Art history</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="gallery-section">
+                <h2>Photo Gallery</h2>
+                <div class="gallery-container" style="max-width: 600px; margin: 0 auto;">
+                    <div class="slide fade">
+                        <img src="1.jpg" alt="At Work" class="gallery-img" style="width: 300px; height: 400px;">
+                        <div class="slide-caption"></div>
+                    </div>
+                    <div class="slide fade">
+                        <img src="2.jpg" alt="Family Time" class="gallery-img" style="width: 300px; height: 400px;">
+                        <div class="slide-caption"></div>
+                    </div>
+                    <div class="slide fade">
+                        <img src="3.jpg" alt="Photography" class="gallery-img" style="width: 300px; height: 400px;">
+                        <div class="slide-caption"></div>
+                    </div>
+                    <button class="nav-btn prev" onclick="plusSlides(-1)">&#10094;</button>
+                    <button class="nav-btn next" onclick="plusSlides(1)">&#10095;</button>
+                </div>
+                
+                <div class="dots"></div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="page-footer">
+        <a href="/index.html" class="back-button">Back to Family Page</a>
+    </footer>
+
+    <style>
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .profile-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .info-block {
+            margin-bottom: 2rem;
+        }
+
+        .gallery-container {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 0.5rem;
+            border: none;
+            cursor: pointer;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .prev { left: 0.5rem; }
+        .next { right: 0.5rem; }
+
+        .nav-btn:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+
+    <script>
+        let slideIndex = 1;
+        showSlides(slideIndex);
+
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+        
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+        
+        function showSlides(n) {
+            let slides = document.getElementsByClassName("slide");
+            let dots = document.getElementsByClassName("dot");
+            
+            if (n > slides.length) {slideIndex = 1}
+            if (n < 1) {slideIndex = slides.length}
+            
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            for (let i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            
+            slides[slideIndex-1].style.display = "block";
+            dots[slideIndex-1].className += " active";
+        }
+
+        // Add navigation dots
+        const dotsContainer = document.querySelector('.dots');
+        const slides = document.getElementsByClassName("slide");
+        for (let i = 0; i < slides.length; i++) {
+            const dot = document.createElement('span');
+            dot.className = 'dot';
+            dot.onclick = function() { currentSlide(i + 1); };
+            dotsContainer.appendChild(dot);
+        }
+
+        // Auto-slide functionality
+        setInterval(() => {
+            plusSlides(1);
+        }, 5000);
+    </script>
+</body>
+</html>

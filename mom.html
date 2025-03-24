@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Mom</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="mom.css">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1>About My Mom</h1>
+        <div class="header-flourish">✿</div>
+    </header>
+
+    <main class="mom-content">
+        <section class="profile">
+            <div class="profile-header">
+                <div class="img-frame">
+                    <img src="mom.jpg" alt="My Mom" class="profile-img animated-img">
+                </div>
+                <h2 class="role-title">Loving Mother & Homemaker</h2>
+            </div>
+            <div class="details">
+                <div class="info-section">
+                    <h3 class="section-title">About Her</h3>
+                    <ul class="info-list">
+                        <li>A nurturing soul with endless love</li>
+                        <li>Creates magic in the kitchen</li>
+                        <li>The heart of our family</li>
+                    </ul>
+                </div>
+
+                <div class="info-section">
+                    <h3 class="section-title">Her Special Touch</h3>
+                    <ul class="skills-list">
+                        <li>Makes every meal a celebration of love</li>
+                        <li>Turns our house into a warm, cozy home</li>
+                        <li>Nurtures with endless patience and care</li>
+                        <li>Creates beautiful memories every day</li>
+                    </ul>
+                </div>
+
+                <div class="info-section">
+                    <h3 class="section-title">What She Loves</h3>
+                    <ul class="interests-list">
+                        <li>Creating delicious family recipes</li>
+                        <li>Tending to her beautiful garden</li>
+                        <li>Making our home a haven of love</li>
+                        <li>Sharing precious moments with family</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="gallery">
+            <h2 class="gallery-title">Photo gallery</h2>
+            <div class="photo-grid">
+                <button class="nav-btn prev" onclick="plusSlides(-1)">❮</button>
+                <div class="slide fade-in">
+                    <img src="/Mom/1.jpg" alt="Creating Culinary Magic" class="gallery-img">
+                    <div class="slide-caption"></div>
+                </div>
+                <div class="slide fade-in">
+                    <img src="/Mom/2.jpg" alt="Precious Family Time" class="gallery-img">
+                    <div class="slide-caption"></div>
+                </div>
+                <div class="slide fade-in">
+                    <img src="/Mom/3.jpg" alt="Garden Paradise" class="gallery-img">
+                    <div class="slide-caption"></div>
+                </div>
+                <button class="nav-btn next" onclick="plusSlides(1)">❯</button>
+            </div>
+            <div class="dots"></div>
+            <script>
+                let slideIndex = 1;
+                showSlides(slideIndex);
+                
+                function plusSlides(n) {
+                    showSlides(slideIndex += n);
+                }
+                
+                function currentSlide(n) {
+                    showSlides(slideIndex = n);
+                }
+                
+                function showSlides(n) {
+                    let slides = document.getElementsByClassName("slide");
+                    let dots = document.getElementsByClassName("dot");
+                    
+                    if (n > slides.length) {slideIndex = 1}
+                    if (n < 1) {slideIndex = slides.length}
+                    
+                    for (let i = 0; i < slides.length; i++) {
+                        slides[i].style.display = "none";
+                    }
+                    for (let i = 0; i < dots.length; i++) {
+                        dots[i].className = dots[i].className.replace(" active", "");
+                    }
+                    
+                    slides[slideIndex-1].style.display = "block";
+                    dots[slideIndex-1].className += " active";
+                }
+                
+                // Add navigation dots with elegant animation
+                const dotsContainer = document.querySelector('.dots');
+                const slides = document.getElementsByClassName("slide");
+                for (let i = 0; i < slides.length; i++) {
+                    const dot = document.createElement('span');
+                    dot.className = 'dot';
+                    dot.onclick = function() { currentSlide(i + 1); };
+                    dotsContainer.appendChild(dot);
+                }
+
+                // Gentle auto-slide transition
+                setInterval(() => {
+                    plusSlides(1);
+                }, 5000);
+
+                // Enhanced image interaction
+                const galleryImages = document.querySelectorAll('.gallery-img');
+                galleryImages.forEach((img, index) => {
+                    img.style.cursor = 'pointer';
+                    img.onclick = function() { 
+                        currentSlide(index + 1);
+                        img.classList.add('heart-beat');
+                        setTimeout(() => img.classList.remove('heart-beat'), 1000);
+                    };
+                });
+            </script>
+        </section>
+    </main>
+
+    <footer class="page-footer">
+        <div class="footer-decoration">❀</div>
+        <a href="/index.html" class="back-button">Return to Our Family</a>
+        <div class="footer-decoration">❀</div>
+    </footer>
+</body>
+</html>
